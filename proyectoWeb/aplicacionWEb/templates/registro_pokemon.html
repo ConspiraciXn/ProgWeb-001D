@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titulo_pagina %}
+    Registro pokemon
+{% endblock titulo_pagina %}
+
+{% block contenido_principal %}
+
+    <!-- Formulario de registro de usuario -->
+    <div class="row d-flex justify-content-center mt-5 mb-5">
+        <div class="col-9">
+
+            <h3 class="text-center mb-5">Registra un pokemon</h3>
+
+
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="txtNombre" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Categoría</label>
+                    <input type="text" class="form-control" name="txtCategoria" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Tipo</label>
+                    <input type="text" class="form-control" name="txtTipo" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="inputImagen" id="exampleInputEmail1" aria-describedby="emailHelp" accept="image/png, image/jpeg" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Valor</label>
+                    <input type="number" name="txtValor" class="form-control" id="exampleInputPassword1" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Registrar pokemon</button>
+            
+            </form>
+
+        </div>
+    </div>
+
+{% endblock contenido_principal %}

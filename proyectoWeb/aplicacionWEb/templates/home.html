@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block titulo_pagina %}
+    Inicio
+{% endblock titulo_pagina %}
+
+{% block contenido_principal %}
+    
+    <!-- Seccion principal -->
+    <h2 class="text-center mt-5">¡Bienvenidos!</h2>
+    <h4 class="text-center">Tienda Pokemon</h4>
+
+    <!-- Ultimos pokemon registrados -->
+    <div class="row d-flex justify-content-center mt-5 mb-5">
+        <div class="col-9">
+            <div class="card-group">
+
+                {% for pokemon in lista_pokemon %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ pokemon.imagen.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pokemon.nombre }}</h5>
+                            <p class="card-text"><strong>Categoria:</strong> {{ pokemon.categoria }} <br><strong>Tipo:</strong> {{ pokemon.tipo }} <br><strong>Valor:</strong> ${{ pokemon.valor }}</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido_principal %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block titulo_pagina %}
+    Detalle Pokemon
+{% endblock titulo_pagina %}
+
+{% block contenido_principal %}
+
+    <!-- Tabla de detalles pokemon -->
+    <div class="row d-flex justify-content-center mt-5">
+
+        <div class="col-9">
+
+            <h3 class="text-center mb-5">Detalle de Pokemon - ID</h3>
+
+            <table class="table">
+
+                <tbody>
+
+                    <tr>
+                        <th scope="row"><strong>Nombre:</strong> </th>
+                        <td>Nombre pokemon</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><strong>Categoria:</strong> </th>
+                        <td>cat pokemon</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><strong>Tipo:</strong> </th>
+                        <td>tipo pokemon</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><strong>Valor:</strong> </th>
+                        <td>valor pokemon</td>
+                    </tr>
+                    
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+{% endblock contenido_principal %}
