@@ -35,7 +35,7 @@
                         <td>{{ pokemon.categoria }}</td>
                         <td>{{ pokemon.tipo }}</td>
                         <td>${{ pokemon.valor }}</td>
-                        <td><button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+                        <td><a href="/pokemon/{{ pokemon.id }}" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </tr>
                     {% endfor %}
                     

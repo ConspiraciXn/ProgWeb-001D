@@ -38,13 +38,17 @@
                         <a class="nav-link" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
                     </li>
 
+                    <!-- Mostrar solo si está logueado y es admin -->
+                    {% if request.user.is_staff and request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{% url 'lista_pokemon' %}">Lista Pokemon</a>
                     </li>
+                    
 
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{% url 'registro_pokemon' %}">Registra un Pokemon</a>
                     </li>
+                    {% endif %}
 
                     <!-- Muestra este boton solamente si no ha iniciado sesión -->
                     {% if request.user.is_authenticated == False %}
@@ -53,17 +57,22 @@
                     </li>
                     {% endif %}
 
-                    <!-- Muestra este boton solamente si ha iniciado sesión -->
+                    
                     {% if request.user.is_authenticated %}
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cierre_sesion' %}">Cerrar sesión</a>
+                        <a class="nav-link text-danger fw-bold" href="{% url 'carrito_compra' %}"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-primary fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ request.user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                          <li><a class="dropdown-item" href="{% url 'cierre_sesion' %}">Cerrar sesión</a></li>
+                        </ul>
                     </li>
                     {% endif %}
-
-
-                    <li class="nav-item">
-                        <a class="nav-link text-primary fw-bold" href="javascript:void(0);">{{ request.user.username }}</a>
-                    </li>
 
                 </ul>
             </div>
@@ -79,6 +88,7 @@
     {% block js_personalizado %}{% endblock js_personalizado %}
 
     <!-- JavaScript de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 

@@ -11,32 +11,50 @@
 
         <div class="col-9">
 
-            <h3 class="text-center mb-5">Detalle de Pokemon - ID</h3>
+            <h3 class="text-center mb-5">Detalle de Pokemon - {{ pokemon.nombre }}</h3>
 
-            <table class="table">
+            <div class="row">
 
-                <tbody>
+                <!-- Imagen pokemon -->
+                <div class="col-3">
+                    <img src="{{ pokemon.imagen.url }}" class="img-thumbnail" style="width: 80%;">
+                </div>
 
-                    <tr>
-                        <th scope="row"><strong>Nombre:</strong> </th>
-                        <td>Nombre pokemon</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><strong>Categoria:</strong> </th>
-                        <td>cat pokemon</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><strong>Tipo:</strong> </th>
-                        <td>tipo pokemon</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><strong>Valor:</strong> </th>
-                        <td>valor pokemon</td>
-                    </tr>
+                <!-- Informacion pokemon -->
+                <div class="col-9">
                     
-                </tbody>
+                    <table class="table">
 
-            </table>
+                        <tbody>
+        
+                            <tr>
+                                <th scope="row"><strong>Nombre:</strong> </th>
+                                <td>{{ pokemon.nombre }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><strong>Categoria:</strong> </th>
+                                <td>{{ pokemon.categoria }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><strong>Tipo:</strong> </th>
+                                <td>{{ pokemon.tipo }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><strong>Valor:</strong> </th>
+                                <td>${{ pokemon.valor }}</td>
+                            </tr>
+                            
+                        </tbody>
+        
+                    </table>
+
+                </div>
+
+            </div>
+
+            
+
+            
 
         </div>
 

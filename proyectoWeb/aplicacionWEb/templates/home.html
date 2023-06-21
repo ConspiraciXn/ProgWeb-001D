@@ -12,6 +12,13 @@
 
     <!-- Ultimos pokemon registrados -->
     <div class="row d-flex justify-content-center mt-5 mb-5">
+
+        {% if alerta_carrito %}
+        <div class="alert alert-success w-50" role="alert">
+            <i class="fa-solid fa-cart-shopping"></i> ¡Producto añadido al carrito exitosamente!
+        </div>
+        {% endif %}
+
         <div class="col-9">
             <div class="card-group">
 
@@ -21,7 +28,11 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ pokemon.nombre }}</h5>
                             <p class="card-text"><strong>Categoria:</strong> {{ pokemon.categoria }} <br><strong>Tipo:</strong> {{ pokemon.tipo }} <br><strong>Valor:</strong> ${{ pokemon.valor }}</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
+
+                            {% if request.user.is_authenticated == True %}
+                                <a href="/agregar-carrito/{{ pokemon.id }}" class="btn btn-primary">Comprar</a>
+                            {% endif %}
+
                         </div>
                     </div>
                 {% endfor %}

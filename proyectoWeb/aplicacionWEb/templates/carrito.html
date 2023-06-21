@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block titulo_pagina %}
+    Carrito de compra
+{% endblock titulo_pagina %}
+
+{% block contenido_principal %}
+
+    <!-- Seccion principal -->
+    <h2 class="text-center mt-5">Carrito de compra</h2>
+
+    <div class="row d-flex justify-content-center mt-5">
+
+        <!-- Mostrar carrito si es que existe -->
+        {% if carrito_existe %}
+        <div class="col-9">
+            <ul class="list-group">
+
+                {% for producto in lista_productos %}
+                    <li class="list-group-item">
+
+                        <div class="row">
+
+                            <div class="col-1 d-flex align-items-center justify-content-center">
+                                <img src="{{ producto.producto_original.imagen.url }}" class="w-100" alt="">
+                            </div>
+
+                            <div class="col-6">
+                                <h5><strong>{{ producto.producto_original.nombre }}</strong></h5>
+                                <p class="m-0"><strong>Valor unitario: </strong> ${{ producto.valor }}</p>
+                                <p class="m-0"><strong>Cantidad: </strong> {{ producto.cantidad }}</p>
+                            </div>
+
+                            <div class="col-5 d-flex justify-content-center align-items-center">
+                                <a href="/aumentar-carrito/{{ producto.id }}/" class="btn btn-sm btn-success"><i class="fa-solid fa-plus"></i></a>
+                                <a href="/disminuir-carrito/{{ producto.id }}/" class="btn btn-sm btn-warning ms-1"><i class="fa-solid fa-minus"></i></a>
+
+                                <button onclick="confirmarEliminacion({{ producto.id }})" class="btn btn-sm btn-danger ms-1"><i class="fa-solid fa-trash"></i></button>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                {% endfor %}
+
+            </ul>
+
+            <!-- Valores del carrito de compra -->
+            <div class="row">
+
+                <div class="col-10">
+
+                    <ul class="text-end mt-3">
+                        <li><strong>Subtotal:</strong> ${{ carrito.subtotal }} </li>
+                        <li><strong>Descuento:</strong> ${{ carrito.descuento }} </li>
+                        <li><strong>Total:</strong> <span class="text-success">${{ carrito.total }}</span> </li>
+                    </ul>
+                
+                </div>
+
+                <div class="col-2 d-flex justify-content-center align-items-center">
+
+                    <a href="/finalizar-compra/{{ carrito.id }}/" class="btn btn-primary">Finalizar compra</a>
+
+
+                </div>
+
+            </div>
+            
+
+            
+
+        </div>
+        {% endif %}
+
+        <!-- Mostrar mensaje carrito no existe -->
+        {% if carrito_existe == False %}
+        <div class="col-9">
+            <h5 class="text-center text-secondary">Ups! Aún no has añadido <br> ningún producto a tu carrito de compra.</h5>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- Estilos personalizados -->
+    <style>
+
+        li {
+            list-style: none;
+        }
+
+    </style>
+
+{% endblock contenido_principal %}
+
+{% block js_personalizado %}
+
+<script>
+    
+    function confirmarEliminacion(idProducto) {
+
+        Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Estás a punto de eliminar un producto de tu carrito.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+            location.href = '/eliminar-carrito/' + idProducto + '/'
+
+            Swal.fire(
+            'Producto eliminado',
+            'Has eliminado el producto',
+            'success'
+            )
+        }
+        })
+
+    }
+    
+    
+</script>
+
+{% endblock js_personalizado %}

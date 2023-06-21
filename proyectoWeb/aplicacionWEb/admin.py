@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pokemon
+from .models import *
 
 # Register your models here.
 
@@ -12,3 +12,6 @@ class PokemonAdmin(admin.ModelAdmin):
     #list_editable = ['nombre', 'categoria', 'tipo', 'valor']  # Permite modificar campos directamente.
 
 admin.site.register(Pokemon, PokemonAdmin)
+
+admin.site.register(ItemCarrito)
+admin.site.register(CarritoCompra)
